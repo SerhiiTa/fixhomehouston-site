@@ -24,6 +24,12 @@ export default function Home() {
             <div className="eyebrow">Houston &amp; Katy, Texas</div>
             <h1>Honest appliance repair, <em>right here in Houston.</em></h1>
             <p className="lead">In-home repair for refrigerators, washers, dryers and kitchen appliances, including premium built-ins.</p>
+            {SITE.faceImage ? (
+              <div className="tech">
+                <img src={SITE.faceImage} alt={`${SITE.owner}, Houston Home Fix appliance repair technician`} />
+                <div><b>{SITE.owner}, your appliance repair technician</b><span>Licensed, insured &amp; EPA-certified · 16+ years of experience</span></div>
+              </div>
+            ) : null}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
               <Link className="btn red" href="/contacts/">Schedule a Repair</Link>
               <a className="btn ghost" href={`tel:${SITE.tel}`}>Call {SITE.phone}</a>
