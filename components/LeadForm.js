@@ -42,8 +42,8 @@ export default function LeadForm({ compact = false }) {
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
         setName(''); setPhone(''); setZip(''); setProblem(''); setNotes(''); setTouched(false);
-        try { window.gtag && window.gtag('event', 'generate_lead', { form: 'request_repair' }); } catch (err) {}
-        setState({ status: 'ok', msg: 'Thank you. We will call you shortly to confirm a time.' });
+        try { window.gtag && window.gtag('event', data.outside ? 'lead_out_of_area' : 'generate_lead', { form: 'request_repair' }); } catch (err) {}
+        setState({ status: 'ok', msg: data.outside ? 'Thank you! Your ZIP code is outside our usual service area, so we will contact you shortly to clarify whether we can help.' : 'Thank you. We will call you shortly to confirm a time.' });
       } else {
         setState({ status: 'err', msg: data.message || `We could not send your request. Please call ${SITE.phone}.` });
       }
