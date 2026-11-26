@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { SITE, PRICES, AREAS } from '@/lib/site';
 import { brandPages, brandName, getPage } from '@/lib/content';
 import LeadForm from './LeadForm';
+import TrustindexWidget from './TrustindexWidget';
 
 export function Seal() {
   return (
@@ -90,24 +91,15 @@ export function Areas() {
 export function Reviews() {
   return (
     <section className="s" id="reviews"><div className="wrap">
-      <div className="head"><h2 className="t">What customers say</h2></div>
-      <div className="g-rating">
-        <span className="stars" aria-hidden="true">★★★★★</span>
-        <b>{SITE.rating}</b>
-        <span>on Google · {SITE.ratingCount} reviews</span>
-        <a className="btn navy" href={SITE.reviewsUrl} target="_blank" rel="noopener noreferrer">Read our reviews on Google</a>
-      </div>
-      {SITE.reviews.length ? (
-        <div className="grid g3">
-          {SITE.reviews.map((r) => (
-            <figure className="rev" key={r.name + r.date}>
-              <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <blockquote>{r.text}</blockquote>
-              <figcaption><b>{r.name}</b><span>{r.date}</span></figcaption>
-            </figure>
-          ))}
+      <div className="head"><h2 className="t">Honest reviews from real customers</h2></div>
+      {SITE.trustindexId ? <TrustindexWidget id={SITE.trustindexId} /> : (
+        <div className="g-rating">
+          <span className="stars" aria-hidden="true">★★★★★</span>
+          <b>{SITE.rating}</b>
+          <span>on Google · {SITE.ratingCount} reviews</span>
         </div>
-      ) : null}
+      )}
+      <p style={{ marginTop: 22 }}><a className="btn navy" href={SITE.reviewsUrl} target="_blank" rel="noopener noreferrer">Read all reviews on Google</a></p>
     </div></section>
   );
 }
