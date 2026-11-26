@@ -14,5 +14,5 @@ export default function TrustindexWidget({ id }) {
     box.appendChild(s);
     return () => { box.innerHTML = ''; };
   }, [id]);
-  return <div ref={ref} className="ti-box" style={{ minHeight: 260 }} />;
+  return <div ref={ref} className="ti-box" style={{ minHeight: 120, marginBottom: 18 }} />;
 }

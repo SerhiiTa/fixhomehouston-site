@@ -92,7 +92,7 @@ export function Reviews() {
   return (
     <section className="s" id="reviews"><div className="wrap">
       <div className="head"><h2 className="t">Honest reviews from real customers</h2></div>
-      {SITE.trustindexId ? <TrustindexWidget id={SITE.trustindexId} /> : (
+      {SITE.trustindexIds?.length ? SITE.trustindexIds.map((id) => <TrustindexWidget key={id} id={id} />) : (
         <div className="g-rating">
           <span className="stars" aria-hidden="true">★★★★★</span>
           <b>{SITE.rating}</b>
