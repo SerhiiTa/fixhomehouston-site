@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
+import { SmsConsent } from '@/components/Sections';
 
 export default function Footer() {
   return (
@@ -13,6 +14,7 @@ export default function Footer() {
           <Link href="/contacts/">Contact us</Link>
         </div>
       </div>
+      <div className="wrap"><SmsConsent className="sms light" /><p className="sms light"><Link href="/privacy-policy/">Privacy Policy</Link> · <Link href="/terms/">Terms of Service</Link> · © {new Date().getFullYear()} {SITE.name}</p></div>
     </footer>
   );
 }

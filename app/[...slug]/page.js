@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SITE } from '@/lib/site';
 import { allPages, getPage, pageKind, pageH1, bodyWithoutH1, faqItems, posts, brandPages, brandName, areaPages, areaName } from '@/lib/content';
-import { Wave, BookCard, PriceBoard, BrandChips, Areas, CtaBand } from '@/components/Sections';
+import { SmsConsent, Wave, BookCard, PriceBoard, BrandChips, Areas, CtaBand } from '@/components/Sections';
 import Services from '@/components/Services';
 import LeadForm from '@/components/LeadForm';
 
@@ -72,6 +72,7 @@ export default async function Page({ params }) {
                   <a className="btn ghost" href={`tel:${SITE.tel}`}>Call {SITE.phone}</a>
                 </div>
                 <p className="fine">{SITE.diagnostic}</p>
+                <SmsConsent className="sms light" />
               </>
             )}
           </div>
@@ -88,6 +89,7 @@ export default async function Page({ params }) {
               <p><a href={`tel:${SITE.tel}`} style={{ fontSize: 26, fontFamily: 'Zilla Slab,serif', fontWeight: 700 }}>{SITE.phone}</a></p>
               <p>{SITE.street}<br />{SITE.city}, {SITE.region} {SITE.zip}<br />{SITE.hours}</p>
               <p className="meta">{SITE.diagnostic}</p>
+              <SmsConsent />
             </div>
             <div className="card-book" style={{ flex: '1 1 340px' }}><h2>Request a repair</h2><p>Tell us what is wrong and we call you back.</p><LeadForm /></div>
           </div>

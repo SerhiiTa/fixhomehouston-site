@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
 import { getPage } from '@/lib/content';
-import { Trust, Wave, BookCard, PriceBoard, BrandChips, Areas, Reviews, CtaBand } from '@/components/Sections';
+import { SmsConsent, Trust, Wave, BookCard, PriceBoard, BrandChips, Areas, Reviews, CtaBand } from '@/components/Sections';
 import Services from '@/components/Services';
 
 const home = getPage('/');
@@ -29,6 +29,7 @@ export default function Home() {
               <a className="btn ghost" href={`tel:${SITE.tel}`}>Call {SITE.phone}</a>
             </div>
             <p className="fine">{SITE.diagnostic}</p>
+            <SmsConsent className="sms light" />
           </div>
           {SITE.heroImage
             ? <div className="hero-img"><img src={SITE.heroImage} alt="Houston Home Fix technician repairing a refrigerator" /></div>

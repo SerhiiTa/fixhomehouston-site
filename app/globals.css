@@ -160,3 +160,10 @@ footer a{color:#E3C27E}
  .cta .phone{font-size:28px}.hdr-r .tel{display:none}.seal{width:96px;height:96px;top:-30px;right:-4px}
  .about{padding:24px}.about .pic{flex-basis:200px}.hero .wrap{padding-bottom:90px}
 }
+.sms{font-size:13.5px;line-height:1.45;color:var(--muted);max-width:620px;margin:12px 0 0}
+.sms a{text-decoration:underline}
+.sms.light{color:#CFC6AE}
+.cta .sms{margin:14px auto 0;text-align:center;color:#F3DAD4}
+footer .sms{max-width:none;margin:18px 0 0}
+.hero .card-book h2,.hero .card-book>p:first-of-type{padding-right:92px}@media(max-width:700px){.hero .card-book h2,.hero .card-book>p:first-of-type{padding-right:70px}}
+.sms.light a{color:#E6C98A}.cta .sms a{color:#fff}

@@ -36,7 +36,7 @@ export default function LeadForm({ compact = false }) {
       {!compact && <label>Anything else we should know<textarea name="notes" /></label>}
       <input className="hp" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <button className="btn red" type="submit" disabled={state.status === 'sending'}>{state.status === 'sending' ? 'Sending…' : 'Send request'}</button>
-      <p className="consent">By sending this form you agree that {SITE.name} may call you about your request.</p>
+      <p className="consent">By submitting this form you agree to receive calls and text messages from {SITE.legalName} about your request. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
       {state.msg ? <p className={`msg ${state.status === 'ok' ? 'ok' : 'err'}`} role="status">{state.msg}</p> : null}
     </form>
   );

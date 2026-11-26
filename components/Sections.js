@@ -110,7 +110,15 @@ export function CtaBand({ title = 'Appliance down? Give us a call.' }) {
   return (
     <section className="cta"><div className="wrap">
       <div><h2>{title}</h2><p>Describe the problem and we give you a time. {SITE.diagnostic}</p></div>
-      <a className="phone" href={`tel:${SITE.tel}`}>{SITE.phone}</a>
-    </div></section>
+      <div style={{ textAlign: 'center' }}><a className="phone" href={`tel:${SITE.tel}`}>{SITE.phone}</a></div>
+    </div><div className="wrap"><SmsConsent className="sms light" /></div></section>
+  );
+}
+
+export function SmsConsent({ className = 'sms' }) {
+  return (
+    <p className={className}>
+      By calling or texting {SITE.phone}, you agree to receive calls and SMS messages from {SITE.legalName}. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out or HELP for help. See our <Link href="/privacy-policy/">Privacy Policy</Link> and <Link href="/terms/">Terms of Service</Link>.
+    </p>
   );
 }
