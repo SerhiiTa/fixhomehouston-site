@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
 import { getPage } from '@/lib/content';
-import { SmsConsent, Trust, Wave, BookCard, PriceBoard, BrandChips, Areas, Reviews, CtaBand } from '@/components/Sections';
+import { SmsConsent, Trust, Wave, BookCard, PriceBoard, BrandChips, Areas, Reviews, LocationMap, CtaBand } from '@/components/Sections';
 import Services from '@/components/Services';
 
 const home = getPage('/');
@@ -62,6 +62,7 @@ export default function Home() {
       </div></section>
       <Reviews />
       <Areas />
+      <LocationMap />
       <CtaBand />
     </>
   );

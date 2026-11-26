@@ -88,20 +88,47 @@ export function Areas() {
 }
 
 export function Reviews() {
-  if (!SITE.reviews.length) return null;
   return (
-    <section className="s"><div className="wrap">
+    <section className="s" id="reviews"><div className="wrap">
       <div className="head"><h2 className="t">What customers say</h2></div>
-      <div className="grid g3">
-        {SITE.reviews.map((r) => (
-          <figure className="rev" key={r.name + r.date}>
-            <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>{r.text}</blockquote>
-            <figcaption><b>{r.name}</b><span>{r.date}</span></figcaption>
-          </figure>
-        ))}
+      <div className="g-rating">
+        <span className="stars" aria-hidden="true">★★★★★</span>
+        <b>{SITE.rating}</b>
+        <span>on Google · {SITE.ratingCount} reviews</span>
+        <a className="btn navy" href={SITE.reviewsUrl} target="_blank" rel="noopener noreferrer">Read our reviews on Google</a>
       </div>
-      {SITE.reviewsUrl ? <p style={{ marginTop: 24 }}><a className="btn navy" href={SITE.reviewsUrl} rel="noopener">Read all reviews on Google</a></p> : null}
+      {SITE.reviews.length ? (
+        <div className="grid g3">
+          {SITE.reviews.map((r) => (
+            <figure className="rev" key={r.name + r.date}>
+              <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <blockquote>{r.text}</blockquote>
+              <figcaption><b>{r.name}</b><span>{r.date}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      ) : null}
+    </div></section>
+  );
+}
+
+export function LocationMap() {
+  return (
+    <section className="s" id="location"><div className="wrap">
+      <div className="head"><h2 className="t">Find us</h2></div>
+      <div className="loc">
+        <div className="loc-card">
+          <h3>{SITE.name}</h3>
+          <p>{SITE.street}<br />{SITE.city}, {SITE.region} {SITE.zip}</p>
+          <p>{SITE.hours}</p>
+          <p><a href={`tel:${SITE.tel}`}><b>{SITE.phone}</b></a></p>
+          <p className="g-mini"><span className="stars" aria-hidden="true">★★★★★</span> {SITE.rating} on Google ({SITE.ratingCount})</p>
+          <a className="btn red" href={SITE.mapsUrl} target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+        </div>
+        <div className="loc-map">
+          <iframe title={`Map: ${SITE.name}, ${SITE.street}, ${SITE.city}`} src={SITE.mapEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+        </div>
+      </div>
     </div></section>
   );
 }

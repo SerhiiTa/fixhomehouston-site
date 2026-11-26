@@ -173,3 +173,15 @@ footer .sms{max-width:none;margin:18px 0 0}
 .coupon a{background:var(--red);color:#fff;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:999px}
 .coupon-applied{display:flex;align-items:center;gap:16px;margin:0 0 22px;padding:16px 22px;border:2px dashed #6FA36B;border-radius:20px;background:#EAF5E4;color:var(--navy)}
 .coupon-applied b{font-family:'Zilla Slab',serif;font-size:34px;line-height:1}
+.g-rating{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 26px;padding:18px 24px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.g-rating .stars,.g-mini .stars{color:var(--brass);letter-spacing:3px;font-size:24px}
+.g-rating b{font-family:'Zilla Slab',serif;font-size:34px;color:var(--navy);line-height:1}
+.g-rating span:not(.stars){font-size:18px;color:var(--muted)}
+.g-rating .btn{margin-left:auto}
+.loc{display:flex;flex-wrap:wrap;gap:24px;align-items:stretch}
+.loc-card{flex:1 1 280px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+.loc-card h3{font-family:'Zilla Slab',serif;font-size:28px;margin:0 0 10px;color:var(--navy)}
+.loc-card p{margin:0 0 12px}
+.g-mini{color:var(--muted)}.g-mini .stars{font-size:18px}
+.loc-map{flex:2 1 420px;min-height:340px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+.loc-map iframe{width:100%;height:100%;min-height:340px;border:0;display:block}
