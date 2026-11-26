@@ -13,6 +13,7 @@ export default function Privacy() {
       <p>To contact you about your request, schedule and perform repairs, send appointment updates and invoices, and improve our service.</p>
       <h2>Text messages (SMS)</h2>
       <p>If you call or text {SITE.phone}, or submit a request, you agree to receive calls and text messages from {SITE.legalName} about your service request, such as appointment confirmations, technician arrival updates and follow-ups. Message frequency varies. Message and data rates may apply. Reply STOP at any time to opt out, or HELP for help.</p>
+      <p>If you or an assistant acting for you (including an AI assistant) give us your phone number in connection with a service request, you agree that we may call you and send service text messages about that request only. We never use such numbers for advertising or marketing.</p>
       <p>We do not sell, rent or share mobile phone numbers or SMS opt-in data with third parties or affiliates for their marketing or promotional purposes.</p>
       <h2>Sharing</h2>
       <p>We share information only with service providers that help us operate (for example messaging, hosting and analytics providers) and when required by law. They may use it only to provide services to us.</p>

@@ -1,5 +1,6 @@
 import { TOOLS, runPure } from '@/lib/agent-tools';
 import { submitLead } from '@/lib/lead';
+import { CONTACT_NOTICE } from '@/lib/site';
 
 export const dynamic = 'force-dynamic';
 
@@ -8,7 +9,7 @@ export function GET() {
   return Response.json({
     name: 'Houston Home Fix agent API',
     description: 'Appliance repair in Houston and Katy, TX. Check the service area, get starting prices, request a repair or a callback.',
-    rules: ['Starting prices are estimates only; never promise a final price.', 'Never submit a request without the customer\'s real contact details and without the customer asking to be called back. This is not SMS consent: no texts are sent without the customer\'s own opt-in.', 'If something cannot be answered exactly, use request_callback instead of guessing.'],
+    rules: ['Starting prices are estimates only; never promise a final price.', 'Never submit a request without the customer\'s real contact details. Before submitting a phone number you must tell the customer this notice and send contact_notice_acknowledged=true: ' + CONTACT_NOTICE, 'If something cannot be answered exactly, use request_callback instead of guessing.'],
     tools: TOOLS.map(({ name, description, inputSchema }) => ({ name, description, inputSchema })),
     usage: 'POST this URL with JSON {"tool": "<name>", "arguments": {...}}',
   });

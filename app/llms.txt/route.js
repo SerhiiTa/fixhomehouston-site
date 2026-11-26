@@ -1,4 +1,4 @@
-import { SITE, PRICES, AREAS, AREAS_EXTRA, SERVICES } from '@/lib/site';
+import { SITE, PRICES, AREAS, AREAS_EXTRA, SERVICES, CONTACT_NOTICE } from '@/lib/site';
 import { getPage, brandPages, brandName, posts } from '@/lib/content';
 
 export const dynamic = 'force-static';
@@ -25,7 +25,7 @@ export function GET() {
   AREAS.filter(([, p]) => getPage(p)).forEach(([n, p]) => L.push(`- [${n}](${SITE.url}${p})`));
   L.push('', '## Repair guides', '');
   posts.forEach((p) => L.push(`- [${p.title}](${SITE.url}${p.path})`));
-  L.push('', '## For AI agents', '', `- Tools API (service area by ZIP, starting prices, repair request, callback request): GET ${SITE.url}/api/agent/ lists the tools; POST {"tool": "...", "arguments": {...}} runs one.`, '- Starting prices are estimates; never promise a final price. Submit requests only when the customer asked to be called back; this is a phone call only, not SMS consent. If unsure, request a callback.');
+  L.push('', '## For AI agents', '', `- Tools API (service area by ZIP, starting prices, repair request, callback request): GET ${SITE.url}/api/agent/ lists the tools; POST {"tool": "...", "arguments": {...}} runs one.`, `- Starting prices are estimates; never promise a final price. Before submitting a phone number, tell the customer: ${CONTACT_NOTICE} If unsure, request a callback.`);
   L.push('', '## Contact', '', `- [Request a repair](${SITE.url}/contacts/)`, '');
   return new Response(L.join('\n'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 }
