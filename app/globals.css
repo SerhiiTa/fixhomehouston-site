@@ -228,3 +228,4 @@ footer .sms{max-width:none;margin:18px 0 0}
  .btn.ghostd{border:2px solid var(--brassl);color:#fff;background:transparent}
 }
 @media(max-width:760px){.menu a{flex:0 0 auto}}
+.form input[aria-invalid="true"]{border-color:var(--red);background:#fff6f4}

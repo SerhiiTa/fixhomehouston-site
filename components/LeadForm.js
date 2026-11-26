@@ -2,26 +2,50 @@
 import { useState } from 'react';
 import { SITE } from '@/lib/site';
 
+// US phone: keep digits only (drop leading 1), format as (XXX) XXX-XXXX
+function fmtPhone(v) {
+  let d = String(v).replace(/\D/g, '');
+  if (d.length > 10 && d.startsWith('1')) d = d.slice(1);
+  d = d.slice(0, 10);
+  if (d.length < 4) return d;
+  if (d.length < 7) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
+  return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
+}
+const validPhone = (v) => /^[2-9]\d{2}[2-9]\d{6}$/.test(v.replace(/\D/g, ''));
+
 export default function LeadForm({ compact = false }) {
   const [state, setState] = useState({ status: 'idle', msg: '' });
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [zip, setZip] = useState('');
+  const [problem, setProblem] = useState('');
+  const [notes, setNotes] = useState('');
+  const [hp, setHp] = useState('');
+  const [touched, setTouched] = useState(false);
+
+  // compact (home) form: ZIP appears once name and phone are filled
+  const showZip = !compact || (name.trim().length > 1 && validPhone(phone)) || zip.length > 0;
+  const phoneBad = phone && !validPhone(phone);
 
   async function onSubmit(e) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    setTouched(true);
+    if (!validPhone(phone)) { setState({ status: 'err', msg: 'Please enter a valid US phone number, 10 digits.' }); return; }
+    if (!/^\d{5}$/.test(zip)) { setState({ status: 'err', msg: 'Please enter your 5-digit US ZIP code.' }); return; }
     setState({ status: 'sending', msg: '' });
     try {
       const res = await fetch('/api/lead/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(fd.entries())),
+        body: JSON.stringify({ name, phone, zip, problem, notes, website: hp }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
-        e.currentTarget.reset();
-        try { window.gtag && window.gtag('event', 'generate_lead', { form: 'request_repair' }); } catch (e) {}
+        setName(''); setPhone(''); setZip(''); setProblem(''); setNotes(''); setTouched(false);
+        try { window.gtag && window.gtag('event', 'generate_lead', { form: 'request_repair' }); } catch (err) {}
         setState({ status: 'ok', msg: 'Thank you. We will call you shortly to confirm a time.' });
       } else {
-        setState({ status: 'err', msg: `We could not send your request. Please call ${SITE.phone}.` });
+        setState({ status: 'err', msg: data.message || `We could not send your request. Please call ${SITE.phone}.` });
       }
     } catch {
       setState({ status: 'err', msg: `We could not send your request. Please call ${SITE.phone}.` });
@@ -29,13 +53,13 @@ export default function LeadForm({ compact = false }) {
   }
 
   return (
-    <form className="form" onSubmit={onSubmit}>
-      <label>Your name<input name="name" type="text" autoComplete="name" required /></label>
-      <label>Phone<input name="phone" type="tel" autoComplete="tel" required /></label>
-      <label>Appliance and problem<input name="problem" type="text" placeholder="Example: Sub-Zero fridge not cooling" required /></label>
-      {!compact && <label>ZIP code or neighborhood<input name="area" type="text" /></label>}
-      {!compact && <label>Anything else we should know<textarea name="notes" /></label>}
-      <input className="hp" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+    <form className="form" onSubmit={onSubmit} noValidate>
+      <label>Your name<input name="name" type="text" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} required /></label>
+      <label>Phone (US)<input name="phone" type="tel" inputMode="tel" autoComplete="tel-national" placeholder="(555) 123-4567" maxLength={14} value={phone} onChange={(e) => setPhone(fmtPhone(e.target.value))} aria-invalid={touched && phoneBad ? 'true' : undefined} required /></label>
+      {showZip && <label>ZIP code<input name="zip" type="text" inputMode="numeric" autoComplete="postal-code" placeholder="77043" maxLength={5} pattern="\d{5}" value={zip} onChange={(e) => setZip(e.target.value.replace(/\D/g, '').slice(0, 5))} required /></label>}
+      <label>Appliance and problem<input name="problem" type="text" placeholder="Example: Sub-Zero fridge not cooling" value={problem} onChange={(e) => setProblem(e.target.value)} required /></label>
+      {!compact && <label>Anything else we should know<textarea name="notes" value={notes} onChange={(e) => setNotes(e.target.value)} /></label>}
+      <input className="hp" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" value={hp} onChange={(e) => setHp(e.target.value)} />
       <button className="btn red" type="submit" disabled={state.status === 'sending'}>{state.status === 'sending' ? 'Sending…' : 'Send request'}</button>
       <p className="consent">By submitting this form you agree to receive calls and text messages from {SITE.legalName} about your request. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
       {state.msg ? <p className={`msg ${state.status === 'ok' ? 'ok' : 'err'}`} role="status">{state.msg}</p> : null}
