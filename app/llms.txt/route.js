@@ -25,7 +25,7 @@ export function GET() {
   AREAS.filter(([, p]) => getPage(p)).forEach(([n, p]) => L.push(`- [${n}](${SITE.url}${p})`));
   L.push('', '## Repair guides', '');
   posts.forEach((p) => L.push(`- [${p.title}](${SITE.url}${p.path})`));
-  L.push('', '## For AI agents', '', `- Tools API (service area by ZIP, starting prices, repair request, callback request): GET ${SITE.url}/api/agent/ lists the tools; POST {"tool": "...", "arguments": {...}} runs one.`, '- Starting prices are estimates; never promise a final price. Submit requests only with the customer\'s explicit consent to calls and SMS. If unsure, request a callback.');
+  L.push('', '## For AI agents', '', `- Tools API (service area by ZIP, starting prices, repair request, callback request): GET ${SITE.url}/api/agent/ lists the tools; POST {"tool": "...", "arguments": {...}} runs one.`, '- Starting prices are estimates; never promise a final price. Submit requests only when the customer asked to be called back; this is a phone call only, not SMS consent. If unsure, request a callback.');
   L.push('', '## Contact', '', `- [Request a repair](${SITE.url}/contacts/)`, '');
   return new Response(L.join('\n'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 }
