@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SITE } from '@/lib/site';
 import { allPages, getPage, pageKind, pageH1, bodyWithoutH1, faqItems, posts, brandPages, brandName, areaPages, areaName } from '@/lib/content';
-import { SmsConsent, Wave, BookCard, PriceBoard, BrandChips, Areas, LocationMap, CtaBand } from '@/components/Sections';
+import { SmsConsent, Wave, BookCard, PriceBoard, BrandChips, Areas, Benefits, LocationMap, CtaBand } from '@/components/Sections';
 import Services from '@/components/Services';
 import LeadForm from '@/components/LeadForm';
 
@@ -114,6 +114,7 @@ export default async function Page({ params }) {
 
       {isBrands ? <BrandChips title="Choose your brand" /> : null}
       {kind === 'area' ? <Services title={`Appliances we repair in ${areaName(p)}`} /> : null}
+      {(kind === 'area' || kind === 'brand' || isService) ? <Benefits /> : null}
       {(kind === 'area' || kind === 'brand' || isService) ? <PriceBoard /> : null}
       {(kind === 'area' || isService) ? <BrandChips /> : null}
       {p.type === 'post' ? <Services title="Need it fixed?" sub="Choose your appliance and we will give you a quote before any work starts." /> : null}

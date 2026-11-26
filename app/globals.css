@@ -101,7 +101,8 @@ h2.t{font-size:40px;font-weight:700}
 .areas .wrap{padding-top:60px;padding-bottom:60px}
 .areas h2{color:#fff}
 .areas ul{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
-.areas a{display:block;padding:8px 18px;border:1px solid rgba(227,194,126,.5);border-radius:999px;color:#EFE6CC;text-decoration:none;font-weight:600;font-size:18px}
+.areas a,.areas li>span{display:block;padding:8px 18px;border:1px solid rgba(227,194,126,.5);border-radius:999px;color:#EFE6CC;text-decoration:none;font-weight:600;font-size:18px}
+.areas li>span{border-style:dashed}
 .areas a:hover{background:var(--brassl);color:var(--navy2)}
 .rev{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow)}
 .rev .stars{color:var(--brass);font-size:24px;letter-spacing:3px}
@@ -185,3 +186,6 @@ footer .sms{max-width:none;margin:18px 0 0}
 .g-mini{color:var(--muted)}.g-mini .stars{font-size:18px}
 .loc-map{flex:2 1 420px;min-height:340px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
 .loc-map iframe{width:100%;height:100%;min-height:340px;border:0;display:block}
+.benefit{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow)}
+.benefit h3{font-family:'Zilla Slab',serif;font-size:22px;margin:0 0 8px;color:var(--navy)}
+.benefit p{margin:0;font-size:17px;line-height:1.5}

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
 import { getPage } from '@/lib/content';
-import { SmsConsent, Trust, Wave, BookCard, PriceBoard, BrandChips, Areas, Reviews, LocationMap, CtaBand } from '@/components/Sections';
+import { SmsConsent, Trust, Wave, BookCard, PriceBoard, BrandChips, Areas, Reviews, Benefits, LocationMap, CtaBand } from '@/components/Sections';
 import Services from '@/components/Services';
 
 const home = getPage('/');
@@ -40,6 +40,7 @@ export default function Home() {
       <Trust />
       <Services />
       <BrandChips />
+      <Benefits />
       <section className="wrap">
         <div className="how"><div className="in">
           <h2>A clear price before we start.</h2>
@@ -56,7 +57,7 @@ export default function Home() {
           {SITE.aboutImage ? <div className="pic"><img src={SITE.aboutImage} alt={`${SITE.owner}, appliance repair technician`} /></div> : null}
           <div className="txt">
             <h2 className="t">{SITE.owner}, your appliance repair technician.</h2>
-            <p>Houston Home Fix is owner-operated by {SITE.owner}, a hands-on appliance technician who serves homeowners in Houston, Katy and surrounding areas. You get clear communication, careful troubleshooting and a straightforward repair process from start to finish.</p>
+            <p>Houston Home Fix is owner-operated by {SITE.owner}, a hands-on, licensed and insured appliance technician with more than 16 years of experience, serving homeowners in Houston, Katy and surrounding areas. You get clear communication, careful troubleshooting and a straightforward repair process from start to finish.</p>
           </div>
         </div>
       </div></section>

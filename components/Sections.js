@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SITE, PRICES, AREAS } from '@/lib/site';
+import { SITE, PRICES, AREAS, AREAS_EXTRA } from '@/lib/site';
 import { brandPages, brandName, getPage } from '@/lib/content';
 import LeadForm from './LeadForm';
 import TrustindexWidget from './TrustindexWidget';
@@ -38,9 +38,9 @@ export function BookCard({ title = 'Request a repair' }) {
 export function Trust() {
   return (
     <div className="trust"><div className="wrap">
-      <div className="it">Owner-operated</div>
+      <div className="it">Licensed &amp; insured</div>
+      <div className="it">16+ years of experience</div>
       <div className="it">Estimate before repairs</div>
-      <div className="it">Local service</div>
       <div className="it">$65 diagnostic, credited</div>
     </div></div>
   );
@@ -80,9 +80,10 @@ export function Areas() {
   return (
     <section className="areas" id="areas"><div className="wrap">
       <h2 className="t">Houston, Katy &amp; nearby neighborhoods.</h2>
-      <p style={{ margin: '12px 0 0', fontSize: 19 }}>Proudly serving homeowners across Houston and Katy, including Bunker Hill Village, Hunters Creek Village and Spring.</p>
+      <p style={{ margin: '12px 0 0', fontSize: 19 }}>Proudly serving homeowners across Houston and Katy, including {AREAS_EXTRA.slice(0, -1).join(', ')} and {AREAS_EXTRA[AREAS_EXTRA.length - 1]}.</p>
       <ul>
         {AREAS.filter(([, p]) => getPage(p)).map(([n, p]) => <li key={p}><Link href={p}>{n}</Link></li>)}
+        {AREAS_EXTRA.map((n) => <li key={n}><span>{n}</span></li>)}
       </ul>
     </div></section>
   );
@@ -139,5 +140,22 @@ export function SmsConsent({ className = 'sms' }) {
     <p className={className}>
       By calling or texting {SITE.phone}, you agree to receive calls and SMS messages from {SITE.legalName}. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out or HELP for help. See our <Link href="/privacy-policy/">Privacy Policy</Link> and <Link href="/terms/">Terms of Service</Link>.
     </p>
+  );
+}
+
+export function Benefits() {
+  const items = [
+    ['Licensed, insured & EPA-certified', 'Licensed for refrigeration work, EPA-certified to handle refrigerants, and covered by business insurance.'],
+    ['16+ years of experience', 'Hands-on repair of everyday appliances and premium built-ins, from refrigerators to ranges.'],
+    ['Warranty on every repair', 'From 3 to 12 months on parts and from 3 to 12 months on labor, depending on the appliance brand.'],
+    ['Clear price first', 'You get a diagnosis and a quote before any work starts. The $65 diagnostic is applied toward the repair.'],
+  ];
+  return (
+    <section className="s" id="why"><div className="wrap">
+      <div className="head"><h2 className="t">Why homeowners choose {SITE.name}</h2></div>
+      <div className="grid g4">
+        {items.map(([t, d]) => <div className="benefit" key={t}><h3>{t}</h3><p>{d}</p></div>)}
+      </div>
+    </div></section>
   );
 }
