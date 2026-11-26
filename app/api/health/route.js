@@ -21,6 +21,18 @@ export async function GET(request) {
     const raw = process.env.TELEGRAM_BOT_TOKEN || '', chatRaw = process.env.TELEGRAM_CHAT_ID || '';
     const token = raw.trim(), chat = chatRaw.trim();
     out.token_has_whitespace = raw !== token;
+    const colon = token.indexOf(':');
+    out.token_shape = {
+      length: token.length,
+      has_colon: colon >= 0,
+      digits_before_colon: colon >= 0 ? (token.slice(0, colon).match(/\d/g) || []).length : null,
+      non_digits_before_colon: colon >= 0 ? token.slice(0, colon).replace(/\d/g, '').length : null,
+      chars_after_colon: colon >= 0 ? token.length - colon - 1 : null,
+      starts_with_bot: /^bot/i.test(token),
+      has_quotes: /["'`]/.test(token),
+      has_inner_whitespace: /\s/.test(token),
+      other_odd_chars: [...new Set((token.match(/[^A-Za-z0-9_:-]/g) || []))].filter((c) => !/\s/.test(c)).join(' ') || null,
+    };
     out.token_looks_valid = /^\d+:[A-Za-z0-9_-]{30,}$/.test(token);
     out.chat_id_looks_valid = /^-?\d+$/.test(chat);
     try {
