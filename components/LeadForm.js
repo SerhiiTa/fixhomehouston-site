@@ -18,6 +18,7 @@ export default function LeadForm({ compact = false }) {
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
         e.currentTarget.reset();
+        try { window.gtag && window.gtag('event', 'generate_lead', { form: 'request_repair' }); } catch (e) {}
         setState({ status: 'ok', msg: 'Thank you. We will call you shortly to confirm a time.' });
       } else {
         setState({ status: 'err', msg: `We could not send your request. Please call ${SITE.phone}.` });

@@ -10,6 +10,7 @@ import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileBar from '@/components/MobileBar';
+import TrackClicks from '@/components/TrackClicks';
 import { SITE } from '@/lib/site';
 
 export const metadata = {
@@ -45,6 +46,7 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <Footer />
         <MobileBar />
+        <TrackClicks />
         {SITE.indexable && SITE.gaId ? (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`} strategy="afterInteractive" />
