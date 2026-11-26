@@ -16,6 +16,7 @@ import { SITE } from '@/lib/site';
 export const metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: 'Appliance Repair Houston TX — Same Day | Houston Home Fix', template: '%s' },
+  verification: { google: 'tVHZffAFbw_1S0ZFCo51Bivf9_oMYgGu2eFvoWjqCZI' },
   robots: SITE.indexable ? { index: true, follow: true } : { index: false, follow: false },
 };
 
