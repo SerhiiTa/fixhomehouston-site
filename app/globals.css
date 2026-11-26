@@ -194,3 +194,37 @@ footer .sms{max-width:none;margin:18px 0 0}
 .tech b{display:block;font-family:'Zilla Slab',serif;font-size:24px;color:#fff;line-height:1.2}
 .tech span{display:block;margin-top:4px;font-size:17px;color:#E3C27E}
 @media(max-width:700px){.tech img{width:76px;height:76px}.tech b{font-size:21px}.tech span{font-size:15px}}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.mbar{display:none}
+@media(max-width:760px){
+ .wrap{padding-left:16px;padding-right:16px}
+ .nav .wrap{gap:4px 12px;padding-top:8px;padding-bottom:6px}
+ .logo svg{width:38px;height:38px}
+ .hdr-r{display:none}
+ .menu{order:3;width:100%;display:flex;flex-wrap:nowrap;gap:22px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;padding:6px 0 4px;margin:0 -16px;padding-left:16px;padding-right:16px}
+ .menu::-webkit-scrollbar{display:none}
+ .menu a{font-size:17px}
+ .hero .wrap{padding-top:34px;gap:30px}
+ .hero.small .wrap{padding-top:26px;padding-bottom:70px}
+ .hero h1{font-size:36px}
+ .hero .lead{font-size:19px}
+ .cta-row .btn{flex:1 1 100%;text-align:center;justify-content:center;padding-top:16px;padding-bottom:16px;font-size:19px}
+ .hero .card-book{padding:22px 18px;margin:0 -4px}
+ .trust .wrap{grid-template-columns:1fr 1fr;padding-left:0;padding-right:0}
+ .trust .it{font-size:17px;padding:14px 8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+ .trust .it:nth-child(2n){border-right:0}
+ .grid{gap:14px}
+ .g4{grid-template-columns:1fr 1fr}
+ .tile .cap{font-size:18px;padding:10px 12px}
+ .tile p{font-size:15px;padding:10px 12px 14px}
+ .s{padding-top:36px;padding-bottom:36px}
+ .narrow{padding-left:16px;padding-right:16px}
+ .about{padding:20px;gap:20px;justify-content:center;text-align:center}
+ .cta .phone{display:block;text-align:center}
+ .g-rating .btn{margin-left:0;width:100%;text-align:center}
+ body{padding-bottom:78px}
+ .mbar{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(19,35,63,.97);box-shadow:0 -6px 20px rgba(0,0,0,.25)}
+ .mbar .btn{flex:1;text-align:center;padding:14px 10px;font-size:18px}
+ .btn.ghostd{border:2px solid var(--brassl);color:#fff;background:transparent}
+}
+@media(max-width:760px){.menu a{flex:0 0 auto}}

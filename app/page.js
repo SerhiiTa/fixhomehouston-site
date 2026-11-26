@@ -30,7 +30,7 @@ export default function Home() {
                 <div><b>{SITE.owner}, your appliance repair technician</b><span>Licensed, insured &amp; EPA-certified · 16+ years of experience</span></div>
               </div>
             ) : null}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
+            <div className="cta-row">
               <Link className="btn red" href="/contacts/">Schedule a Repair</Link>
               <a className="btn ghost" href={`tel:${SITE.tel}`}>Call {SITE.phone}</a>
             </div>

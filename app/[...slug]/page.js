@@ -67,7 +67,7 @@ export default async function Page({ params }) {
             {p.type === 'post' ? <p className="fine">Updated {p.modified}</p> : (
               <>
                 <p className="lead">{kind === 'area' ? `Same-day appliance repair for homeowners in ${areaName(p)}.` : 'Same-day appliance repair in Houston and Katy, Texas.'}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
+                <div className="cta-row">
                   <Link className="btn red" href="/contacts/">Schedule a Repair</Link>
                   <a className="btn ghost" href={`tel:${SITE.tel}`}>Call {SITE.phone}</a>
                 </div>
