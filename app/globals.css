@@ -167,3 +167,9 @@ footer a{color:#E3C27E}
 footer .sms{max-width:none;margin:18px 0 0}
 .hero .card-book h2,.hero .card-book>p:first-of-type{padding-right:92px}@media(max-width:700px){.hero .card-book h2,.hero .card-book>p:first-of-type{padding-right:70px}}
 .sms.light a{color:#E6C98A}.cta .sms a{color:#fff}
+.coupon{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin:22px 0;padding:18px 24px;border:2px dashed var(--brass);border-radius:20px;background:#FFF9E8}
+.coupon b{font-family:'Zilla Slab',serif;font-size:36px;color:var(--red);line-height:1}
+.coupon span{flex:1 1 180px;font-weight:700;color:var(--navy);font-size:18px}
+.coupon a{background:var(--red);color:#fff;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:999px}
+.coupon-applied{display:flex;align-items:center;gap:16px;margin:0 0 22px;padding:16px 22px;border:2px dashed #6FA36B;border-radius:20px;background:#EAF5E4;color:var(--navy)}
+.coupon-applied b{font-family:'Zilla Slab',serif;font-size:34px;line-height:1}
