@@ -26,7 +26,7 @@ const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'HomeAndConstructionBusiness',
   name: SITE.name,
-  description: 'Located near Memorial, Bunker Hill Village, Hunters Creek Village, Uptown, and the Energy Corridor, Houston Home Fix provides top-quality repair services for high-end home appliances. Certified technicians specialize in brands like Sub-Zero, Thermador, Viking, JennAir, KitchenAid, LG, and Samsung.',
+  description: 'Located near Memorial, Bunker Hill Village, Hunters Creek Village, Uptown, and the Energy Corridor, Houston Home Fix provides top-quality repair services for high-end home appliances. Licensed, insured technicians specialize in brands like Sub-Zero, Thermador, Viking, JennAir, KitchenAid, LG, and Samsung.',
   image: `${SITE.url}/wp-content/uploads/2025/02/Houston-appliance-fix-Header-main-1.jpg`,
   url: SITE.url,
   telephone: SITE.tel,
@@ -34,7 +34,9 @@ const localBusiness = {
   address: { '@type': 'PostalAddress', streetAddress: SITE.street, addressLocality: SITE.city, addressRegion: SITE.region, postalCode: SITE.zip, addressCountry: 'US' },
   geo: { '@type': 'GeoCoordinates', latitude: 29.7873602, longitude: -95.5748883 },
   openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '08:00', closes: '18:00' }],
-  areaServed: ['Houston, TX', 'Katy, TX', 'Spring, TX', 'Uptown Houston', 'Hunters Creek Village', 'Memorial City', 'Bunker Hill Village', 'Energy Corridor'],
+  areaServed: ['Houston, TX', 'Katy, TX', 'Spring, TX', 'Sugar Land, TX', 'Spring Branch, Houston', 'Downtown Houston', 'Midtown Houston', 'Montrose', 'The Heights', 'River Oaks', 'Uptown Houston', 'West University Place', 'Bellaire', 'Memorial City', 'Hunters Creek Village', 'Bunker Hill Village', 'Energy Corridor'],
+  knowsAbout: ['Refrigerator repair', 'Sub-Zero repair', 'Washer repair', 'Dryer repair', 'Dishwasher repair', 'Oven repair', 'Cooktop repair', 'Range repair', 'Ice maker repair'],
+  slogan: 'Honest appliance repair, right here in Houston.',
   sameAs: ['https://www.facebook.com/Houstonhomefixappliance', 'https://g.co/kgs/D4SwHmd'],
 };
 
