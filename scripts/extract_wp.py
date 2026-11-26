@@ -99,8 +99,8 @@ def rename(x):
         x = re.sub(j, '', x, flags=re.I)
     # the old coupon widget (image + link) becomes a simple coupon card styled by the new theme
     coupon = '<aside class="coupon"><b>$25 OFF</b><span>On appliance repair service</span><a href="/coupon/">Use coupon</a></aside>'
-    x = re.sub(r'<figure>\s*<img[^>]*coupon[^>]*>\s*</figure>\s*<a href="/coupon/">\s*USE COUPON\s*</a>', coupon, x, flags=re.I)
-    x = re.sub(r'<a href="/coupon/">\s*USE COUPON\s*</a>', coupon, x, flags=re.I)
+    x = re.sub(r'<figure>\s*<img[^>]*coupon[^>]*>\s*</figure>\s*<a href="/coupon/">\s*USE COUPON\s*</a>', coupon, x)
+    x = re.sub(r'<a href="/coupon/">\s*USE COUPON\s*</a>', coupon, x)
     return x
 def resolve(t, title):
     t = html.unescape(t)
