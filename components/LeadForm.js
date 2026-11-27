@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SITE } from '@/lib/site';
 
 // US phone: keep digits only (drop leading 1), format as (XXX) XXX-XXXX
@@ -22,6 +22,18 @@ export default function LeadForm({ compact = false }) {
   const [notes, setNotes] = useState('');
   const [hp, setHp] = useState('');
   const [touched, setTouched] = useState(false);
+  const [done, setDone] = useState(null); // null | 'ok' | 'outside'
+  const closeRef = useRef(null);
+
+  useEffect(() => {
+    if (!done) return;
+    closeRef.current && closeRef.current.focus();
+    const onKey = (ev) => { if (ev.key === 'Escape') setDone(null); };
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [done]);
 
   // compact (home) form: ZIP appears once name and phone are filled
   const showZip = !compact || (name.trim().length > 1 && validPhone(phone)) || zip.length > 0;
@@ -43,7 +55,8 @@ export default function LeadForm({ compact = false }) {
       if (res.ok && data.ok) {
         setName(''); setPhone(''); setZip(''); setProblem(''); setNotes(''); setTouched(false);
         try { window.gtag && window.gtag('event', data.outside ? 'lead_out_of_area' : 'generate_lead', { form: 'request_repair' }); } catch (err) {}
-        setState({ status: 'ok', msg: data.outside ? 'Thank you! Your ZIP code is outside our usual service area, so we will contact you shortly to clarify whether we can help.' : 'Thank you. We will call you shortly to confirm a time.' });
+        setState({ status: 'idle', msg: '' });
+        setDone(data.outside ? 'outside' : 'ok');
       } else {
         setState({ status: 'err', msg: data.message || `We could not send your request. Please call ${SITE.phone}.` });
       }
@@ -62,6 +75,19 @@ export default function LeadForm({ compact = false }) {
       <input className="hp" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" value={hp} onChange={(e) => setHp(e.target.value)} />
       <button className="btn red" type="submit" disabled={state.status === 'sending'}>{state.status === 'sending' ? 'Sending…' : 'Send request'}</button>
       <p className="consent">By submitting this form you agree to receive calls and text messages from {SITE.legalName} about your request. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
+      {done && (
+        <div className="modal-back" onClick={() => setDone(null)}>
+          <div className="modal" role="dialog" aria-modal="true" aria-labelledby="done-title" onClick={(ev) => ev.stopPropagation()}>
+            <div className="modal-ico" aria-hidden="true">{done === 'ok' ? '✓' : '★'}</div>
+            <h3 id="done-title">{done === 'ok' ? 'Your request is received' : 'Thank you, we got your request'}</h3>
+            {done === 'ok'
+              ? <p>We will contact you shortly by phone or text to confirm your appointment. Your {SITE.diagnostic.toLowerCase().includes('$65') ? '$65 diagnostic is applied toward the repair.' : 'diagnostic is applied toward the repair.'}</p>
+              : <p>Your ZIP code is outside our usual service area, but we will contact you shortly to clarify whether we can help.</p>}
+            <p className="modal-fine">Need us sooner? Call <a href={`tel:${SITE.tel}`}>{SITE.phone}</a></p>
+            <button ref={closeRef} type="button" className="btn red" onClick={() => setDone(null)}>OK</button>
+          </div>
+        </div>
+      )}
       {state.msg ? <p className={`msg ${state.status === 'ok' ? 'ok' : 'err'}`} role="status">{state.msg}</p> : null}
     </form>
   );
