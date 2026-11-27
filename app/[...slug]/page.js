@@ -68,7 +68,7 @@ export default async function Page({ params }) {
               <>
                 <p className="lead">{kind === 'area' ? `Same-day appliance repair for homeowners in ${areaName(p)}.` : 'Same-day appliance repair in Houston and Katy, Texas.'}</p>
                 <div className="cta-row">
-                  <Link className="btn red" href="/contacts/">Schedule a Repair</Link>
+                  {isContacts ? <a className="btn red" href="#request">Schedule a Repair</a> : <Link className="btn red" href="/contacts/#request">Schedule a Repair</Link>}
                   <a className="btn ghost" href={`tel:${SITE.tel}`}>Call {SITE.phone}</a>
                 </div>
                 <p className="fine">{SITE.diagnostic}</p>
