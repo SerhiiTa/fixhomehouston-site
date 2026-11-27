@@ -31,7 +31,7 @@ export default function Home() {
               </div>
             ) : null}
             <div className="cta-row">
-              <Link className="btn red" href="/contacts/">Schedule a Repair</Link>
+              <Link className="btn red" href="/contacts/#request">Schedule a Repair</Link>
               <a className="btn ghost" href={`tel:${SITE.tel}`}>Call {SITE.phone}</a>
             </div>
             <p className="fine">{SITE.diagnostic}</p>

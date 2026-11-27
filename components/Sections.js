@@ -59,7 +59,7 @@ export function PriceBoard() {
           </div></div>
         ))}
       </div>
-      <div className="diag"><span><b>$65 diagnostic fee.</b> It is applied toward the cost of your repair.</span><Link className="btn red" href="/contacts/">Book a diagnostic</Link></div>
+      <div className="diag"><span><b>$65 diagnostic fee.</b> It is applied toward the cost of your repair.</span><Link className="btn red" href="/contacts/#request">Book a diagnostic</Link></div>
       <p className="note">Prices are starting estimates and vary with the complexity of the repair and the make and model of the appliance.</p>
     </div></section>
   );

@@ -82,7 +82,7 @@ export default async function Page({ params }) {
 
       <div className="narrow content">
         {isContacts ? (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 36 }}>
+          <div className="contact-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: 36 }}>
             <div style={{ flex: '1 1 340px', minWidth: 0 }}>
               <div className="prose" dangerouslySetInnerHTML={{ __html: body }} />
               <h2 style={{ fontSize: 28, margin: '8px 0 10px' }}>Call or visit</h2>
@@ -91,7 +91,7 @@ export default async function Page({ params }) {
               <p className="meta">{SITE.diagnostic}</p>
               <SmsConsent />
             </div>
-            <div className="card-book" style={{ flex: '1 1 340px' }}>{p.slug === 'coupon' ? <div className="coupon-applied"><span>✓ Coupon applied</span><b>$25 OFF</b></div> : null}<h2>Request a repair</h2><p>Tell us what is wrong and we call you back.</p><LeadForm /></div>
+            <div id="request" className="card-book" style={{ flex: '1 1 340px' }}>{p.slug === 'coupon' ? <div className="coupon-applied"><span>✓ Coupon applied</span><b>$25 OFF</b></div> : null}<h2>Request a repair</h2><p>Tell us what is wrong and we call you back.</p><LeadForm /></div>
           </div>
         ) : (
           <>

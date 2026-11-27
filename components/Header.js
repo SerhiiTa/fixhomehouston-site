@@ -25,7 +25,7 @@ export default function Header() {
         </nav>
         <div className="hdr-r">
           <a className="tel" href={`tel:${SITE.tel}`}>{SITE.phone}</a>
-          <Link className="btn red" href="/contacts/">Book Service</Link>
+          <Link className="btn red" href="/contacts/#request">Book Service</Link>
         </div>
       </div>
     </header>

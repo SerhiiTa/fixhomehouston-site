@@ -5,7 +5,7 @@ export default function MobileBar() {
   return (
     <div className="mbar">
       <a className="btn ghostd" href={`tel:${SITE.tel}`}>Call now</a>
-      <Link className="btn red" href="/contacts/">Request repair</Link>
+      <Link className="btn red" href="/contacts/#request">Request repair</Link>
     </div>
   );
 }
