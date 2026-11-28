@@ -7,6 +7,9 @@ const nextConfig = {
   images: { unoptimized: true },
   async redirects() {
     return [
+      // Review link for QR code / cards: same destination for every customer, no gating. Change the URL here to swap targets.
+      { source: '/review', destination: 'https://maps.app.goo.gl/SrVzEGNNjjPjVsu88', permanent: false },
+      { source: '/review/', destination: 'https://maps.app.goo.gl/SrVzEGNNjjPjVsu88', permanent: false },
       // Broken URLs Google reported as redirect errors
       { source: '/kitchenaid-appliance-', destination: '/kitchenaid-appliance-repair/', permanent },
       { source: '/kitchenaid-appliance-/', destination: '/kitchenaid-appliance-repair/', permanent },
