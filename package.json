@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "npx -y esbuild --bundle --platform=node --format=esm --tsconfig=jsconfig.json tests/crm.test.mjs --outfile=/tmp/crm.test.bundle.mjs --log-level=error && node /tmp/crm.test.bundle.mjs"
   },
   "dependencies": {
     "@fontsource/source-sans-3": "^5.3.1",

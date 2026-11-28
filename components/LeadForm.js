@@ -25,6 +25,19 @@ export default function LeadForm({ compact = false }) {
   const [done, setDone] = useState(null); // null | 'ok' | 'outside'
   const closeRef = useRef(null);
 
+  // remember campaign tags (utm_*, gclid) from the landing URL so they survive navigation to the form
+  useEffect(() => {
+    try {
+      const q = new URLSearchParams(window.location.search);
+      const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'];
+      if (keys.some((k) => q.get(k))) {
+        const a = {};
+        keys.forEach((k) => { if (q.get(k)) a[k.replace('utm_', '')] = q.get(k).slice(0, 240); });
+        sessionStorage.setItem('hhf_attr', JSON.stringify(a));
+      }
+    } catch (err) {}
+  }, []);
+
   useEffect(() => {
     if (!done) return;
     closeRef.current && closeRef.current.focus();
@@ -49,7 +62,7 @@ export default function LeadForm({ compact = false }) {
       const res = await fetch('/api/lead/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, zip, problem, notes, website: hp }),
+        body: JSON.stringify({ name, phone, zip, problem, notes, website: hp, utm: (() => { try { return JSON.parse(sessionStorage.getItem('hhf_attr') || '{}'); } catch (err) { return {}; } })() }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {

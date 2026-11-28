@@ -1,6 +1,7 @@
 import { submitLead } from '@/lib/lead';
 
 export const dynamic = 'force-dynamic';
+export const maxDuration = 20;
 
 export async function POST(request) {
   let body;

@@ -3,6 +3,7 @@ import { submitLead } from '@/lib/lead';
 import { CONTACT_NOTICE } from '@/lib/site';
 
 export const dynamic = 'force-dynamic';
+export const maxDuration = 20;
 
 // Plain HTTP interface for AI agents: GET lists the tools, POST {tool, arguments} runs one.
 export function GET() {
