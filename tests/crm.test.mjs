@@ -32,7 +32,7 @@ await ok('web form: no agent_context, formId website_form', async () => {
 });
 await ok('out-of-area flagged prominently, still valid', async () => {
   const p = buildCrmPayload({ ...base, outside: true, serviceArea: null });
-  assert.match(p.message.body.split('\n')[0], /OUT OF AREA/); assert.equal(p.formFields.service_area.value, null); assert.equal(p.formFields.out_of_area.value, true); assert.deepEqual(validateCrmPayload(p), []);
+  assert.match(p.message.body.split('\n')[0], /OUT OF AREA/); assert.equal(p.formFields.service_area.value, null); assert.equal(p.formFields.out_of_area.value, true); assert.equal('state' in p.serviceAddress, false); assert.match(p.message.body, /ZIP state: not verified/); assert.equal(buildCrmPayload(base).serviceAddress.state, 'TX'); assert.deepEqual(validateCrmPayload(p), []);
 });
 await ok('validation rejects bad phone/zip/consent/timestamp', async () => {
   const p = buildCrmPayload(base);
