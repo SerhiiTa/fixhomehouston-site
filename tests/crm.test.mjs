@@ -20,7 +20,7 @@ await ok('payload matches the WRA contract (agent)', async () => {
   const p = buildCrmPayload(base);
   assert.equal(p.formId, 'ai_agent'); assert.equal(p.providerEventId, 'fixhomehouston:submission:' + base.id);
   assert.equal(p.customer.phone, '+12025550101'); assert.deepEqual(p.serviceAddress, { postalCode: '77450', state: 'TX', country: 'US' });
-  assert.equal(p.requestedService.problemDescription, 'LG refrigerator: not cooling');
+  assert.equal(p.requestedService.problemDescription, '[FixHomeHouston] LG refrigerator: not cooling');
   assert.match(p.message.body, /AI Agent Context: ZIP verified\./); assert.match(p.message.body, /Out of area: No/); assert.match(p.message.body, /Contact consent: Yes/);
   assert.equal(p.attribution.websiteDomain, 'fixhomehouston.com'); assert.equal(p.formFields.agent_context.value, 'ZIP verified.');
   assert.equal(p.formFields.consent.value.via, 'ai_agent'); assert.equal(p.formFields.out_of_area.value, false); assert.equal('requestedAppointment' in p, false);
