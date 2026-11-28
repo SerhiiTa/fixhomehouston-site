@@ -1,5 +1,6 @@
 import { SITE, PRICES, AREAS, AREAS_EXTRA, SERVICES, CONTACT_NOTICE } from '@/lib/site';
 import { getPage, brandPages, brandName, posts } from '@/lib/content';
+import { AREA_DATA } from '@/lib/areas-data';
 
 export const dynamic = 'force-static';
 
@@ -22,7 +23,7 @@ export function GET() {
   L.push('', '## Brands', '');
   brandPages.forEach((p) => L.push(`- [${brandName(p)}](${SITE.url}${p.path})`));
   L.push('', '## Service areas', '');
-  AREAS.filter(([, p]) => getPage(p)).forEach(([n, p]) => L.push(`- [${n}](${SITE.url}${p})`));
+  AREAS.filter(([, p]) => getPage(p)).forEach(([n, p]) => L.push(`- [${n}](${SITE.url}${p})${AREA_DATA[p] ? `: ZIP ${AREA_DATA[p].zips.join(', ')}; ${AREA_DATA[p].places.slice(0, 5).join(', ')}` : ''}`));
   L.push('', '## Repair guides', '');
   posts.forEach((p) => L.push(`- [${p.title}](${SITE.url}${p.path})`));
   L.push('', '## For AI agents', '', `- Tools API (service area by ZIP, starting prices, repair request, callback request): GET ${SITE.url}/api/agent/ lists the tools; POST {"tool": "...", "arguments": {...}} runs one.`, `- Starting prices are estimates; never promise a final price. Before submitting a phone number, tell the customer: ${CONTACT_NOTICE} If unsure, request a callback.`);

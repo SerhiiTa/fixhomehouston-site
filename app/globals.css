@@ -240,3 +240,25 @@ footer .sms{max-width:none;margin:18px 0 0}
 .modal p{font-size:18px;line-height:1.45;margin:0 0 12px;color:var(--ink)}
 .modal .modal-fine{font-size:16px;color:#5b5440}
 .modal .btn{width:100%;justify-content:center;text-align:center;margin-top:6px}
+
+.area-detail{margin-top:8px}
+.area-detail h2{font-size:30px;margin:6px 0 14px}
+.area-detail h3{font-size:22px;margin:28px 0 10px;color:var(--navy)}
+.area-detail p{font-size:18px;line-height:1.6}
+.zip-chips,.svc-links,.tips{list-style:none;padding:0;margin:0}
+.zip-chips{display:flex;flex-wrap:wrap;gap:10px}
+.zip-chips li{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;gap:2px}
+.zip-chips li b{font-size:20px;color:var(--navy)}
+.zip-chips li span{font-size:14px;color:#5b5440}
+.zip-chips li.far{border-color:#E3C27E;background:#FFFBF0}
+.places{color:#3a3a3a}
+.svc-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px 18px}
+.svc-links a{font-size:17px;text-decoration:underline}
+.tips{display:grid;gap:10px}
+.tips li{position:relative;padding-left:26px;font-size:18px;line-height:1.5}
+.tips li:before{content:"\2605";position:absolute;left:0;color:var(--gold,#C9A24A)}
+.area-detail .faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 16px;margin:0 0 10px}
+.area-detail .faq summary{cursor:pointer;font-weight:700;font-size:18px;padding:12px 0;color:var(--navy)}
+.area-detail .faq details p{margin:0 0 14px}
+.nearby a{text-decoration:underline}
+@media(max-width:760px){.area-detail h2{font-size:26px}.area-detail p,.tips li{font-size:17px}}

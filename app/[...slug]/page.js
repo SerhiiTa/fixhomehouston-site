@@ -5,6 +5,8 @@ import { allPages, getPage, pageKind, pageH1, bodyWithoutH1, faqItems, posts, br
 import { SmsConsent, Wave, BookCard, PriceBoard, BrandChips, Areas, Benefits, LocationMap, CtaBand } from '@/components/Sections';
 import Services from '@/components/Services';
 import LeadForm from '@/components/LeadForm';
+import AreaDetails from '@/components/AreaDetails';
+import { AREA_DATA } from '@/lib/areas-data';
 
 export const dynamicParams = false;
 
@@ -18,11 +20,13 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const p = getPage(toPath(slug));
   if (!p) return {};
+  const ad = AREA_DATA[p.path];
+  const description = ad ? `Appliance repair in ${ad.name}, Houston TX (ZIP ${ad.zips.join(', ')}). Refrigerator, washer, dryer, dishwasher, oven and cooktop repair. $65 diagnostic applied to repair. Call ${SITE.phone}.` : p.description;
   const meta = {
     title: p.seoTitle,
-    description: p.description || undefined,
+    description: description || undefined,
     alternates: { canonical: p.path },
-    openGraph: { title: p.seoTitle, description: p.description || undefined, url: p.path, type: p.type === 'post' ? 'article' : 'website', ...(p.thumb ? { images: [p.thumb] } : {}) },
+    openGraph: { title: p.seoTitle, description: description || undefined, url: p.path, type: p.type === 'post' ? 'article' : 'website', ...(p.thumb ? { images: [p.thumb] } : {}) },
   };
   return meta;
 }
@@ -39,7 +43,9 @@ const Crumbs = ({ p }) => (
 
 function JsonLd({ p }) {
   const blocks = [];
-  const faq = faqItems(p.body);
+  const ad = AREA_DATA[p.path];
+  const faq = ad ? ad.faq.map(([q, a]) => ({ q, a })) : faqItems(p.body);
+  if (ad) blocks.push({ '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Appliance repair', name: `Appliance repair in ${ad.name}, Houston TX`, url: SITE.url + p.path, provider: { '@type': 'LocalBusiness', name: SITE.name, telephone: SITE.phone, url: SITE.url }, areaServed: [{ '@type': 'Place', name: `${ad.name}, Houston, TX` }, ...ad.zips.map((z) => ({ '@type': 'Place', name: `ZIP ${z}, TX` }))] });
   if (faq.length) blocks.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
   if (p.type === 'post') blocks.push({ '@context': 'https://schema.org', '@type': 'Article', headline: p.title, datePublished: p.date, dateModified: p.modified, image: p.thumb ? SITE.url + p.thumb : undefined, author: { '@type': 'Organization', name: SITE.name }, publisher: { '@type': 'Organization', name: SITE.name }, mainEntityOfPage: SITE.url + p.path });
   return blocks.map((b, i) => <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(b) }} />);
@@ -97,6 +103,7 @@ export default async function Page({ params }) {
           <>
             {p.type === 'post' && p.thumb ? <img src={p.thumb} alt="" style={{ width: '100%', borderRadius: 18, marginBottom: 24 }} /> : null}
             <div className="prose" dangerouslySetInnerHTML={{ __html: body }} />
+            {kind === 'area' ? <AreaDetails path={p.path} /> : null}
           </>
         )}
       </div>
