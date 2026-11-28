@@ -262,3 +262,10 @@ footer .sms{max-width:none;margin:18px 0 0}
 .area-detail .faq details p{margin:0 0 14px}
 .nearby a{text-decoration:underline}
 @media(max-width:760px){.area-detail h2{font-size:26px}.area-detail p,.tips li{font-size:17px}}
+
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.rev{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
+.rev .stars{color:var(--brass);letter-spacing:3px;font-size:20px;margin-bottom:8px}
+.rev blockquote{margin:0 0 12px;font-size:18px;line-height:1.55;color:var(--ink)}
+.rev figcaption{font-size:16px;color:var(--muted)}
+.rev figcaption b{color:var(--navy)}

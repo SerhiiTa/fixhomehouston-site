@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { SITE, PRICES, AREAS, AREAS_EXTRA } from '@/lib/site';
 import { brandPages, brandName, getPage } from '@/lib/content';
 import LeadForm from './LeadForm';
-import TrustindexWidget from './TrustindexWidget';
+import REVIEWS from '@/content/reviews.json';
 
 export function Seal() {
   return (
@@ -93,13 +93,22 @@ export function Reviews() {
   return (
     <section className="s" id="reviews"><div className="wrap">
       <div className="head"><h2 className="t">Honest reviews from real customers</h2></div>
-      {SITE.trustindexIds?.length ? SITE.trustindexIds.map((id) => <TrustindexWidget key={id} id={id} />) : (
-        <div className="g-rating">
-          <span className="stars" aria-hidden="true">★★★★★</span>
-          <b>{SITE.rating}</b>
-          <span>on Google · {SITE.ratingCount} reviews</span>
+      <div className="g-rating">
+        <span className="stars" aria-hidden="true">★★★★★</span>
+        <b>{SITE.rating}</b>
+        <span>on Google · {SITE.ratingCount} reviews</span>
+      </div>
+      {REVIEWS.length ? (
+        <div className="rev-grid">
+          {REVIEWS.map((r, i) => (
+            <figure className="rev" key={i}>
+              <div className="stars" aria-label={`${r.stars || 5} out of 5 stars`}>{'★'.repeat(r.stars || 5)}</div>
+              <blockquote>{r.text}</blockquote>
+              <figcaption><b>{r.name}</b>{r.date ? <span> · {r.date}</span> : null}<span className="src"> · Google review</span></figcaption>
+            </figure>
+          ))}
         </div>
-      )}
+      ) : null}
       <p style={{ marginTop: 22 }}><a className="btn navy" href={SITE.reviewsUrl} target="_blank" rel="noopener noreferrer">Read all reviews on Google</a></p>
     </div></section>
   );
