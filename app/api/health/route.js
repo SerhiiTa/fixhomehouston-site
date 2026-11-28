@@ -12,6 +12,11 @@ export async function GET(request) {
     telegram_token_set: Boolean(process.env.TELEGRAM_BOT_TOKEN),
     telegram_chat_id_set: Boolean(process.env.TELEGRAM_CHAT_ID),
     anthropic_key_set: Boolean(process.env.ANTHROPIC_API_KEY),
+    crm_url_set: Boolean((process.env.WRA_CRM_INBOUND_URL || '').trim()),
+    crm_url_is_https: /^https:\/\//.test((process.env.WRA_CRM_INBOUND_URL || '').trim()),
+    crm_public_key_set: Boolean((process.env.WRA_FIXHOME_SOURCE_PUBLIC_KEY || '').trim()),
+    crm_secret_set: Boolean((process.env.WRA_FIXHOME_SOURCE_SECRET || '').trim()),
+    crm_enabled_flag: String(process.env.WRA_CRM_ENABLED || '').trim().toLowerCase() === 'true',
   };
   if (new URL(request.url).searchParams.get('telegram')) {
     const now = Date.now();
